@@ -1,0 +1,4 @@
+{
+    "name": "python-dev",
+    "dockerFile": "docker/Dockerfile"
+}
