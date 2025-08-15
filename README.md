@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository is a lightweight template for a reproducible Python development environment using Docker and VS Code Dev Containers (or GitHub Codespaces). It is pre-configured to optionally leverage an NVIDIA GPU when available, so you can work on data science, ML, or general Python projects without polluting your host system.
+This repository is a lightweight template for a reproducible Python development environment using Docker and VS Code Dev Containers. It is pre-configured to optionally leverage an NVIDIA GPU when available, so you can work on data science, ML, or general Python projects without polluting your host system.
 
 ## Prerequisite
 
