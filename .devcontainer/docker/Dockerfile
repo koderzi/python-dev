@@ -21,25 +21,25 @@ RUN echo 'eval "$(/root/.local/bin/mise activate bash)"' > /etc/profile.d/mise.s
 # the function so child bash processes see it, and set BASH_ENV so
 # non-interactive bash shells source it too. Also source it from
 # /root/.bashrc to ensure interactive non-login shells get it.
-RUN cat > /etc/profile.d/py-init.sh <<'PYINIT'
-py-init() {
-  if [ -z "$1" ]; then
-    echo "Error: Please provide a Python version."
-    echo "Example: py-init 3.11"
-    return 1
-  fi
-  
-  echo "Initializing mise Python environment for version $1..."
-  
-  touch ./mise.toml
-  mise use python@$1
-  mise config set env._.python.venv.path .venv
-  mise config set env._.python.venv.create true
-  
-  echo "Setup complete."
-}
-export -f py-init
-PYINIT
+RUN printf '%s\n' \
+  'py-init() {' \
+  '  if [ -z "$1" ]; then' \
+  '    echo "Error: Please provide a Python version."' \
+  '    echo "Example: py-init 3.11"' \
+  '    return 1' \
+  '  fi' \
+  '  ' \
+  '  echo "Initializing mise Python environment for version $1..."' \
+  '  ' \
+  '  touch ./mise.toml' \
+  '  mise use python@$1' \
+  '  mise config set env._.python.venv.path .venv' \
+  '  mise config set env._.python.venv.create true' \
+  '  ' \
+  '  echo "Setup complete."' \
+  '}' \
+  'export -f py-init' \
+  > /etc/profile.d/py-init.sh
 
 RUN chmod 0755 /etc/profile.d/py-init.sh \
 		&& echo 'source /etc/profile.d/py-init.sh' >> /root/.bashrc || true
