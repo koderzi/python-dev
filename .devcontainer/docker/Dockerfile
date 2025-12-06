@@ -49,6 +49,7 @@ ENV BASH_ENV=/etc/profile.d/py-init.sh
 
 RUN /root/.local/bin/mise use --global python@3.13
 
-WORKDIR /workspace
+WORKDIR /workspaces
 
 CMD ["bash"]
+
