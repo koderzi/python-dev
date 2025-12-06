@@ -6,6 +6,8 @@ RUN apt-get update \
 		ca-certificates \
 		bash \
 		git \
+    wget \
+    procps \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& curl -fsSL https://mise.run | sh \
 	&& ~/.local/bin/mise --version || true
@@ -52,4 +54,3 @@ RUN /root/.local/bin/mise use --global python@3.13
 WORKDIR /workspaces
 
 CMD ["bash"]
-
