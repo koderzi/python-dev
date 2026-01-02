@@ -6,8 +6,23 @@
         "all",
         "--runtime=nvidia"
     ],
+    "forwardPorts": [
+        "0:6080"
+    ],
+    "portsAttributes": {
+        "0:6080": {
+            "label": "Desktop GUI",
+            "onAutoForward": "openBrowser"
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/desktop-lite:1": {}
+    },
     "customizations": {
         "vscode": {
+            "settings": {
+                "git.ignoreMissingGitWarning": true
+            },
             "extensions": [
                 "ms-toolsai.jupyter",
                 "ms-toolsai.vscode-jupyter-cell-tags",
@@ -20,5 +35,7 @@
                 "ms-python.vscode-python-envs"
             ]
         }
-    }
+    },
+    "shutdownAction": "stopContainer",
+    "postAttachCommand": "${containerWorkspaceFolder}/.devcontainer/cmd/setup-git"
 }
