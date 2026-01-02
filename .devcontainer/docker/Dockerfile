@@ -12,6 +12,10 @@ RUN apt-get update \
 	&& curl -fsSL https://mise.run | sh \
 	&& ~/.local/bin/mise --version || true
 
+# Install GUI dependencies for desktop-lite feature
+COPY install-gui-deps.sh /tmp/install-gui-deps.sh
+RUN chmod +x /tmp/install-gui-deps.sh && /tmp/install-gui-deps.sh && rm /tmp/install-gui-deps.sh
+
 ENV PATH="/root/.local/bin:${PATH}"
 
 RUN echo 'eval "$(/root/.local/bin/mise activate bash)"' > /etc/profile.d/mise.sh \
