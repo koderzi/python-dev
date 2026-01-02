@@ -6,8 +6,25 @@
         "all",
         "--runtime=nvidia"
     ],
+    // Dynamic port mapping: 0:6080 maps a random host port to container port 6080
+    // This prevents port conflicts when running multiple instances
+    "forwardPorts": [
+        "0:6080"
+    ],
+    "portsAttributes": {
+        "0:6080": {
+            "label": "Desktop GUI",
+            "onAutoForward": "openBrowser"
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/desktop-lite:1": {}
+    },
     "customizations": {
         "vscode": {
+            "settings": {
+                "git.ignoreMissingGitWarning": true
+            },
             "extensions": [
                 "ms-toolsai.jupyter",
                 "ms-toolsai.vscode-jupyter-cell-tags",
@@ -20,5 +37,7 @@
                 "ms-python.vscode-python-envs"
             ]
         }
-    }
+    },
+    "shutdownAction": "stopContainer",
+    "postAttachCommand": "${containerWorkspaceFolder}/.devcontainer/cmd/setup-git"
 }
