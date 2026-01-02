@@ -6,6 +6,8 @@
         "all",
         "--runtime=nvidia"
     ],
+    // Dynamic port mapping: 0:6080 maps a random host port to container port 6080
+    // This prevents port conflicts when running multiple instances
     "forwardPorts": [
         "0:6080"
     ],
