@@ -5,9 +5,10 @@ RUN apt-get update \
 		curl \
 		ca-certificates \
 		bash \
-		git \
 		wget \
 		procps \
+		git \
+		net-tools \
 		sudo \
 		libglib2.0-dev \
 		libnss3 \
@@ -18,7 +19,7 @@ RUN apt-get update \
 		libgtk-3-0 \
 		libgbm1 \
 		libasound2 \
-	&& rm -rf /var/lib/apt/lists/* \
+	&& apt-get clean && rm -rf /var/lib/apt/lists/* \
 	&& curl -fsSL https://mise.run | sh \
 	&& ~/.local/bin/mise --version || true
 
